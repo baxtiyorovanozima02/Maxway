@@ -27,17 +27,17 @@ def login_page(request):
 
 @login_required_decorator
 def home_page(request):
-    faculties = services.get_faculties()
+    categories = services.get_categories()
     kafedras = services.get_kafedra()
-    subjects = services.get_subject()
+    products = services.get_product()
     teachers = services.get_teacher()
     groups = services.get_groups()
     students = services.get_student()
     ctx={
         'counts' : {
-            'faculties':len(faculties),
+            'categories':len(categories),
             'kafedras':len(kafedras),
-            'subjects':len(subjects),
+            'products':len(products),
             'teachers':len(teachers),
             'groups':len(groups),
             'students':len(students)
@@ -47,20 +47,20 @@ def home_page(request):
 
 #FACULTY
 @login_required_decorator
-def faculty_create(request):
-    model = Faculty()
-    form = FacultyForm(request.POST or None, instance=model)
+def category_create(request):
+    model = Category()
+    form = CategoryForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
 
 
         actions = request.session.get('actions',[])
-        actions += [f"You created faculty: {request.POST.get('name')}"]
+        actions += [f"You created category: {request.POST.get('name')}"]
         request.session["actions"] = actions
 
-        faculty_count = request.session.get('faculty_count', 0)
-        faculty_count +=1
-        request.session["faculty_count"] = faculty_count
+        category_count = request.session.get('category_count', 0)
+        category_count +=1
+        request.session["category_count"] = category_count
 
         return redirect('faculty_list')
 
@@ -69,41 +69,41 @@ def faculty_create(request):
         "model":model,
         "form":form
     }
-    return render(request,'faculty/form.html',ctx)
+    return render(request,'category/form.html',ctx)
 
 @login_required_decorator
-def faculty_edit(request,pk):
-    model = Faculty.objects.get(pk=pk)
-    form = FacultyForm(request.POST or None, instance=model)
+def category_edit(request,pk):
+    model = Category.objects.get(pk=pk)
+    form = CategoryForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
 
         actions = request.session.get('actions',[])
-        actions += [f"You edited faculty: {request.POST.get('name')}"]
+        actions += [f"You edited category: {request.POST.get('name')}"]
         request.session["actions"] = actions
-        return redirect('faculty_list')
+        return redirect('category_list')
 
 
     ctx = {
         "model":model,
         "form":form
     }
-    return render(request,'faculty/form.html',ctx)
+    return render(request,'category/form.html',ctx)
 
 @login_required_decorator
-def faculty_delete(request,pk):
-    model = Faculty.objects.get(pk=pk)
+def category_delete(request,pk):
+    model = Category.objects.get(pk=pk)
     model.delete()
-    return redirect('faculty_list')
+    return redirect('category_list')
 
 @login_required_decorator
-def faculty_list(request):
-    faculties=services.get_faculties()
-    print(faculties)
+def category_list(request):
+    categories=services.get_categories()
+    print(categories)
     ctx={
-        "faculties":faculties
+        "categories":categories
     }
-    return render(request,'faculty/list.html',ctx)
+    return render(request,'category/list.html',ctx)
 
 # KAFEDRA
 @login_required_decorator
@@ -164,60 +164,60 @@ def kafedra_list(request):
 
 #SUBJECT
 @login_required_decorator
-def subject_create(request):
-    model = Subject()
-    form = SubjectForm(request.POST or None, instance=model)
+def product_create(request):
+    model = Product()
+    form = ProductForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
 
         actions = request.session.get('actions',[])
-        actions += [f"You created subject: {request.POST.get('name')}"]
+        actions += [f"You created product: {request.POST.get('name')}"]
         request.session["actions"] = actions
 
-        subject_count = request.session.get('subject_count', 0)
-        subject_count +=1
-        request.session["subject_count"] = subject_count
+        product_count = request.session.get('product_count', 0)
+        product_count +=1
+        request.session["product_count"] = product_count
 
-        return redirect('subject_list')
+        return redirect('product_list')
 
     ctx = {
         "model":model,
         "form":form
     }
-    return render(request,'subject/form.html',ctx)
+    return render(request,'product/form.html',ctx)
 
 @login_required_decorator
-def subject_edit(request,pk):
-    model = Subject.objects.get(pk=pk)
-    form = SubjectForm(request.POST or None, instance=model)
+def product_edit(request,pk):
+    model = Product.objects.get(pk=pk)
+    form = ProductForm(request.POST or None, instance=model)
     if request.POST and form.is_valid():
         form.save()
 
         actions = request.session.get('actions',[])
-        actions += [f"You edited subject: {request.POST.get('name')}"]
+        actions += [f"You edited product: {request.POST.get('name')}"]
         request.session["actions"] = actions
-        return redirect('subject_list')
+        return redirect('product_list')
 
 
     ctx = {
         "model":model,
         "form":form
     }
-    return render(request,'subject/form.html',ctx)
+    return render(request,'product/form.html',ctx)
 
 @login_required_decorator
-def subject_delete(request,pk):
-    model = Subject.objects.get(pk=pk)
+def product_delete(request,pk):
+    model = Product.objects.get(pk=pk)
     model.delete()
-    return redirect('subject_list')
+    return redirect('product_list')
 
 @login_required_decorator
-def subject_list(request):
-    subjects=services.get_subject()
+def product_list(request):
+    products=services.get_product()
     ctx={
-        "subjects":subjects
+        "products":products
     }
-    return render(request,'subject/list.html',ctx)
+    return render(request,'product/list.html',ctx)
 
 #TEACHER
 @login_required_decorator

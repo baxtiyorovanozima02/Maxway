@@ -17,7 +17,7 @@ def dictfetchone(cursor):
     return dict(zip(columns, row))
 
 
-def get_faculties():
+def get_categories():
     with closing(connection.cursor()) as cursor:
         cursor.execute("""SELECT * from adminapp_faculty""")
         faculties = dictfetchall(cursor)
@@ -40,7 +40,7 @@ def get_kafedra():
         return kafedra
 
 
-def get_subject():
+def get_product():
     with closing(connection.cursor()) as cursor:
         cursor.execute("""SELECT * from adminapp_subject""")
         subjects = dictfetchall(cursor)

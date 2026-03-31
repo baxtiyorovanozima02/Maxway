@@ -27,8 +27,8 @@
                                         <i class="fa fa-book"></i>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ counts.faculties|intcomma}}</h2>
-                                        <span>Faculty</span>
+                                        <h2>{{ counts.categories|intcomma}}</h2>
+                                        <span>Category</span>
                                     </div>
                                 </div>
                                 <div class="overview-chart">
@@ -83,8 +83,8 @@
                                         <i class="zmdi zmdi-calendar-note"></i>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ counts.subjects|intcomma }}</h2>
-                                        <span>Subject</span>
+                                        <h2>{{ counts.products|intcomma }}</h2>
+                                        <span>Product</span>
                                     </div>
                                 </div>
                                 <div class="overview-chart">
@@ -230,11 +230,11 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ["Faculty", "Kafedra", "Teacher", "Group", "Student"],
+          labels: ["Category", "Kafedra", "Teacher", "Group", "Product"],
           datasets: [
             {
               label: "University dataset",
-              data: [{{ counts.faculties }}, {{ counts.kafedras }}, {{ counts.teachers }}, {{ counts.groups }}, {{ counts.students }}],
+              data: [{{ counts.categories }}, {{ counts.kafedras }}, {{ counts.teachers }}, {{ counts.groups }}, {{ counts.students }}],
               borderColor: "rgba(0, 123, 255, 0.9)",
               borderWidth: "0",
               backgroundColor: "rgba(0, 123, 255, 0.5)"
@@ -281,7 +281,7 @@
         type: 'pie',
         data: {
           datasets: [{
-              data: [{{ counts.faculties }}, {{ counts.kafedras }}, {{ counts.teachers }}, {{ counts.groups }}, {{ counts.students }}],
+              data: [{{ counts.categorties }}, {{ counts.kafedras }}, {{ counts.teachers }}, {{ counts.groups }}, {{ counts.students }}],
             backgroundColor: [
               "rgba(0, 123, 255,0.9)",
               "rgba(0, 123, 255,0.7)",
@@ -296,7 +296,7 @@
             ]
 
           }],
-          labels: ["Faculty", "Kafedra", "Teacher", "Group", "Student"],
+          labels: ["Category", "Kafedra", "Teacher", "Group", "Product"],
 
         },
         options: {

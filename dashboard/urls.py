@@ -6,15 +6,15 @@ urlpatterns = [
     path('login_page/',login_page, name='login_page'),
     path('logout_page/',logout_page, name='logout_page'),
 
-    path('faculty/create/',faculty_create, name='faculty_create'),
-    path('faculty/<int:pk>/edit/',faculty_edit, name='faculty_edit'),
-    path('faculty/<int:pk>/delete/',faculty_delete, name='faculty_delete'),
-    path('faculty/list/',faculty_list, name='faculty_list'),
+    path('category/create/',category_create, name='category_create'),
+    path('category/<int:pk>/edit/',category_edit, name='category_edit'),
+    path('category/<int:pk>/delete/',category_delete, name='category_delete'),
+    path('category/list/',category_list, name='category_list'),
 
-    path('subject/create/',subject_create, name='subject_create'),
-    path('subject/<int:pk>/edit/',subject_edit, name='subject_edit'),
-    path('subject/<int:pk>/delete/',subject_delete, name='subject_delete'),
-    path('subject/list/',subject_list, name='subject_list'),
+    path('product/create/',product_create, name='product_create'),
+    path('product/<int:pk>/edit/',product_edit, name='product_edit'),
+    path('product/<int:pk>/delete/',product_delete, name='product_delete'),
+    path('product/list/',product_list, name='product_list'),
 
     path('kafedra/create/',kafedra_create, name='kafedra_create'),
     path('kafedra/<int:pk>/edit/',kafedra_edit, name='kafedra_edit'),

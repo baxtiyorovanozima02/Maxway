@@ -1,9 +1,9 @@
 from django import forms
 from .models import *
 from . import services
-class FacultyForm(forms.ModelForm):
+class CategoryForm(forms.ModelForm):
     class Meta:
-        model = Faculty
+        model = Category
         fields= "__all__"
         widgets = {
         "name":forms.TextInput(attrs={'class':'form-control'})
@@ -17,9 +17,9 @@ class KafedraForm(forms.ModelForm):
         "name":forms.TextInput(attrs={'class':'form-control'})
         }
 
-class SubjectForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = Subject
+        model = Product
         fields= "__all__"
         widgets = {
         "name":forms.TextInput(attrs={'class':'form-control'})
@@ -33,7 +33,7 @@ class TeacherForm(forms.ModelForm):
         "first_name":forms.TextInput(attrs={'class':'form-control'}),
         "last_name":forms.TextInput(attrs={'class':'form-control'}),
         "age":forms.NumberInput(attrs={'class':'form-control'}),
-        "subject":forms.Select(attrs={'class':'form-control'}),
+        "product":forms.Select(attrs={'class':'form-control'}),
         "kafedra":forms.Select(attrs={'class':'form-control'}),
         }
 class GroupForm(forms.ModelForm):
