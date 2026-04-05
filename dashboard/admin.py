@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Category, Teacher, Student
-admin.site.register(Category)
-admin.site.register(Teacher)
-admin.site.register(Student)
+# from food.models import Category, Product, Order,OrderProduct,Customer
+# admin.site.register(Category)
+# admin.site.register(Product)
+# admin.site.register(Order)
+# admin.site.register(Customer)
+# admin.site.register(OrderProduct)
