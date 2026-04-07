@@ -6,6 +6,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('food.urls')),
     path('',include('dashboard.urls'))
+
 ]
 
 if settings.DEBUG:
