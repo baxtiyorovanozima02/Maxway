@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dashboard',
-    # 'mathfilters',
+    'mathfilters',
     'django.contrib.humanize',
     'food'
 ]

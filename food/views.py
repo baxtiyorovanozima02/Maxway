@@ -104,6 +104,6 @@ def main_order(request):
     response.set_cookie("greeting", 'hello')
     return response
 
-# def send_order(request):
-#     return redirect(index)
-    # return render(request,'food/order.html')
+def send_order(request):
+    # return redirect('index')
+    return render(request,'food/order.html')
