@@ -1,5 +1,6 @@
 import json
-
+from django.core.mail import send_mail
+from django.conf import settings
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .models import *
@@ -14,7 +15,7 @@ def home_page(request):
 def order_page(request):
     if request.GET:
         user = get_user_by_phone(request.GET.get("phone_number",0))
-        return JsonResponse(user)
+        return JsonResponse(user,safe=False)
 
 def index(request):
     categories = Category.objects.all()
@@ -107,3 +108,51 @@ def main_order(request):
 def send_order(request):
     # return redirect('index')
     return render(request,'food/order.html')
+
+
+def finalize_order(request):
+    """
+    Buyurtmani yakunlash va email yuborish funksiyasi.
+    """
+    if request.method == 'POST':
+        f_name = request.POST.get('first_name')
+        l_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone_number')
+
+
+        subject = f"Yangi Buyurtma: {f_name} {l_name}"
+        message = (
+            f"Mijoz ismi: {f_name} {l_name}\n"
+            f"Telefon: {phone}\n"
+            f"Email: {email}\n"
+            f"Maxway loyihasidan xabar."
+        )
+
+        try:
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=settings.EMAIL_HOST_USER,
+                recipient_list=[settings.EMAIL_HOST_USER],
+                fail_silently=False,
+            )
+            print("Email muvaffaqiyatli uchdi! 🚀")
+        except Exception as e:
+            print(f"Xatolik yuz berdi: {e}")
+
+        return redirect('index')
+
+    return redirect('index')
+
+
+    from .models import Order
+
+    Order.objects.create(
+        customer=f"{f_name} {l_name}",
+        address=region if region else "Manzil ko'rsatilmadi",
+        phone=phone,
+        payment_type="naqd"
+    )
+
+
