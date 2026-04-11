@@ -203,7 +203,7 @@
                     </div>
                 </div>
             </div>
-            <form id="second_form" class="account" method="post">
+            <form id="second_form" class="account" action="{% url 'checkout' %}"  method="post">>
                 {% csrf_token %}
                 <div class="phone">
                     <p> ВЕРИФИКАЦИЯ ТЕЛЕФОНА*</p><br>
@@ -218,6 +218,9 @@
                         <input class="input" name="last_name" id="last_name" type="text" placeholder="Фамилия*">
                         <div>&nbsp;</div>
                     </div>
+                    <div>&nbsp;</div>
+                        <input class="input" name="email" id="email" type="email" placeholder="Email manzilingiz*" required>
+                    <div>&nbsp;</div>
                     <div class="all">
                         <div class="card">
                             <p>СПОСОБЫ ОПЛАТЫ*</p>
