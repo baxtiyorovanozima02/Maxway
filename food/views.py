@@ -154,5 +154,3 @@ def finalize_order(request):
         phone=phone,
         payment_type="naqd"
     )
-
-
